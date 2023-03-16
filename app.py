@@ -1,6 +1,11 @@
+import sqlite3
 from flask import Flask, render_template
 
 app = Flask(__name__)  # Flaskのアプリケーション本体
+
+
+#データベースのパスを定数で定義
+DB_PATH = './testapp.db' # app.py 
 
 @app.route("/")  # / というルートを定義
 def hello_world():  # / というルートにリクエストがあったときに実行する関数を定義
@@ -31,6 +36,12 @@ def template_test():
 
 @app.route('/tasks')
 def tasks():
+    conn = sqlite3.connect(DB_PATH) #DB接続
+    c = conn.cursor() #カーソル起動
+    c.exectue('SELECT id,name FROM tasks') #SQLクエリを実行
+    tasks = c.fetchall() #取得したデータをPythonに変換
+    #tasks = [(),(),()]
+    print(tasks) #ログに表示して確認する
     return render_template('tasks.html')
 
 
