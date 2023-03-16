@@ -50,6 +50,10 @@ def tasks():
     print(tasks) #ログに表示して確認する
     return render_template('tasks.html', tasks=tasks)
 
+@app.route('/tasks/create', methods=['GET'])
+def tasks_create_get():
+    return render_template('tasks_create.html')
+
 
 # __name__ というのは、自動的に定義される変数で、現在のファイル(モジュール)名が入ります。 
 # ファイルをスクリプトとして直接実行した場合、 __name__ は __main__ になります。
