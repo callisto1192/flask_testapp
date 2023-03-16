@@ -10,6 +10,18 @@ def hello_world():  # / というルートにリクエストがあったとき�
 def sunabaco():
     return '<h1>SUNABACO KOZA でFlaskの講義を受講中</h1>'
 
+@app.route('/greet/<name>')
+def greet(name):
+    return name + 'さん、こんばんは！'
+#これが書けたらFlaskサーバーを起動させてブラウザでルートにアクセスして確認
+
+#このサイトに新しいルートを作ってください('/weather<weather>')
+#関数名はweather()で引数にweatherを受け取って
+#    関数の戻り値として「今日の天気は〇〇です」と表示してみましょう
+@app.route('/weather/<weather>')
+def weather(weather):
+    return '今日の天気は' + weather + 'です'
+
 # __name__ というのは、自動的に定義される変数で、現在のファイル(モジュール)名が入ります。 
 # ファイルをスクリプトとして直接実行した場合、 __name__ は __main__ になります。
 if __name__ == '__main__':
