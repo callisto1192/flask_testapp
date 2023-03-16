@@ -38,11 +38,11 @@ def template_test():
 def tasks():
     conn = sqlite3.connect(DB_PATH) #DB接続
     c = conn.cursor() #カーソル起動
-    c.exectue('SELECT id,name FROM tasks') #SQLクエリを実行
+    c.execute('SELECT id,name FROM tasks') #SQLクエリを実行
     tasks = c.fetchall() #取得したデータをPythonに変換
     #tasks = [(),(),()]
     print(tasks) #ログに表示して確認する
-    return render_template('tasks.html')
+    return render_template('tasks.html', tasks=tasks )
 
 
 # __name__ というのは、自動的に定義される変数で、現在のファイル(モジュール)名が入ります。 
