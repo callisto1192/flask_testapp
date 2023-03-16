@@ -25,7 +25,9 @@ def weather(weather):
 #テンプレートを使ってリスポンスする
 @app.route('/template/test')
 def template_test():
-    return render_template('index.html')
+    user_name = 'なかがわ'
+    user_age = '15'
+    return render_template('index.html', user_name=user_name, user_age=user_age)
 
 
 # __name__ というのは、自動的に定義される変数で、現在のファイル(モジュール)名が入ります。 
