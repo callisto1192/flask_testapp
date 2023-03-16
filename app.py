@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)  # Flaskのアプリケーション本体
 
@@ -21,6 +21,12 @@ def greet(name):
 @app.route('/weather/<weather>')
 def weather(weather):
     return '今日の天気は' + weather + 'です'
+
+#テンプレートを使ってリスポンスする
+@app.route('/template/test')
+def template_test():
+    return render_template('index.html')
+
 
 # __name__ というのは、自動的に定義される変数で、現在のファイル(モジュール)名が入ります。 
 # ファイルをスクリプトとして直接実行した場合、 __name__ は __main__ になります。
