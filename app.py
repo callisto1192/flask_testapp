@@ -29,6 +29,10 @@ def template_test():
     user_age = '15'
     return render_template('index.html', user_name=user_name, user_age=user_age)
 
+@app.route('/tasks')
+def tasks():
+    return render_template('tasks.html')
+
 
 # __name__ というのは、自動的に定義される変数で、現在のファイル(モジュール)名が入ります。 
 # ファイルをスクリプトとして直接実行した場合、 __name__ は __main__ になります。
