@@ -1,2 +1,7 @@
 __pycache__/
 .DS_Store
+
+#.dbの名称で終わるすべてのファイルを管理対象外に
+*.db
+#.db-journal の名称で終わるすべてのファイルを管理対象外に
+*.db-journal

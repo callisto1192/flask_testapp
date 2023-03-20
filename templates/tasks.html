@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+タスク一覧
+{% endblock %}
+
+{% block content %}
+<h1>タスク一覧</h1>
+    <p>{{ tasks }}</p>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>やること</th>
+            <th>編集</th>
+            <th>削除</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.name }}</td>
+            <td>編集</td>
+            <td>削除</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

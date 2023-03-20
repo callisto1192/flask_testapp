@@ -1,6 +1,11 @@
+import sqlite3
 from flask import Flask, render_template
 
 app = Flask(__name__)  # Flaskのアプリケーション本体
+
+
+#データベースのパスを定数で定義
+DB_PATH = './testapp.db' # app.py 
 
 @app.route("/")  # / というルートを定義
 def hello_world():  # / というルートにリクエストがあったときに実行する関数を定義
@@ -28,6 +33,26 @@ def template_test():
     user_name = 'なかがわ'
     user_age = '15'
     return render_template('index.html', user_name=user_name, user_age=user_age)
+
+@app.route('/tasks')
+def tasks():
+    conn = sqlite3.connect(DB_PATH) #DB接続
+    c = conn.cursor() #カーソル起動
+    c.execute('SELECT id,name FROM tasks') #SQLクエリを実行
+    tasks = []
+    for task in c.fetchall():
+        tasks.append(
+            {
+            'id': task[0],
+            'name': task[1]
+            }
+        )
+    print(tasks) #ログに表示して確認する
+    return render_template('tasks.html', tasks=tasks)
+
+@app.route('/tasks/create', methods=['GET'])
+def tasks_create_get():
+    return render_template('tasks_create.html')
 
 
 # __name__ というのは、自動的に定義される変数で、現在のファイル(モジュール)名が入ります。 
